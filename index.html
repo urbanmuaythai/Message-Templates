@@ -72,6 +72,10 @@ footer{border-top:1px solid var(--line);padding:22px 0 34px;color:var(--muted-2)
 :focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
 
 .template-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:24px}.template-nav a{padding:8px 14px;border:1px solid var(--line-hi);border-radius:999px;text-decoration:none;font-size:12px}.template-nav a:hover{border-color:var(--gold)}.actions{display:flex;flex-wrap:wrap;gap:8px}.rdesc ul{padding-left:18px}.rdesc li{margin:8px 0}section{scroll-margin-top:20px;margin-top:30px}.others-grid{grid-template-columns:minmax(0,1fr)}.msg-template p{overflow-wrap:anywhere}.source-note{color:var(--muted);font-size:12px;margin-top:28px}#copy-status{color:var(--gold);font-size:12px;margin-top:12px}#manual-copy-text{display:block;width:100%;min-height:100px;background:var(--panel);color:var(--text);margin-top:8px}@media(max-width:400px){.wrap{padding:0 14px}.retention-grid{grid-template-columns:minmax(0,1fr)}.msg-template{flex-wrap:wrap}.msg-template p{min-width:0}.brand h1{font-size:28px}}
+
+/* Keep the page top bar visible inside the page and Google Sites embeds. */
+header.top{position:sticky;top:0;z-index:60;isolation:isolate;box-shadow:0 5px 18px #0002}html{scroll-padding-top:var(--sticky-height,100px)}[id]{scroll-margin-top:12px}header.top{padding-top:14px;padding-bottom:14px;background:#101326}
+@media print{header.top{position:static;box-shadow:none}}
 </style>
 </head>
 <body>
@@ -109,5 +113,5 @@ if(!copied){const field=document.createElement('textarea');field.value=text;fiel
 if(copied){document.getElementById('manual-copy').hidden=true;btn.textContent='Copied';btn.classList.add('copied');status.textContent='Message copied. Replace all name placeholders before sending.';setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},1500);}
 else{const panel=document.getElementById('manual-copy');const field=document.getElementById('manual-copy-text');panel.hidden=false;field.value=text;field.focus();field.select();status.textContent='Automatic copy is unavailable. Copy the selected message below.';}
 }</script>
-</body>
+<script>(()=>{const bar=document.querySelector("header.top");if(!bar)return;const update=()=>document.documentElement.style.setProperty('--sticky-height',(Math.ceil(bar.getBoundingClientRect().height)+16)+'px');new ResizeObserver(update).observe(bar);update();})();</script></body>
 </html>
