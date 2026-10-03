@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistant 2.0 — Message Templates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+:root{
+  --ink:#101326; --panel:#181c37; --panel-2:#20254a;
+  --navy:#1B1F3B; --red:#C8102E; --red-hi:#e8324e; --gold:#F5B921;
+  --text:#EEF0FA; --muted:#9aa0c4; --muted-2:#6f76a0;
+  --line:rgba(255,255,255,.09); --line-hi:rgba(255,255,255,.16);
+  --shadow:0 18px 40px -22px rgba(0,0,0,.75); --r:14px; --maxw:1000px;
+}
+*{box-sizing:border-box}
+body{margin:0;
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(200,16,46,.18), transparent 60%),
+    radial-gradient(900px 500px at -5% 0%, rgba(245,185,33,.08), transparent 55%),
+    var(--ink);
+  color:var(--text);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.5;min-height:100vh}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.rope{height:6px;width:100%;background:repeating-linear-gradient(90deg,var(--red) 0 44px,var(--gold) 44px 88px)}
+header.top{padding:28px 0 8px}
+.brand{display:flex;align-items:center;gap:14px}
+.mark{width:46px;height:46px;border-radius:11px;background:linear-gradient(140deg,var(--red),#8f0b20);
+  display:grid;place-items:center;font-family:'Bebas Neue';font-size:24px;letter-spacing:1px;color:#fff;flex-shrink:0}
+.brand h1{font-family:'Bebas Neue';font-weight:400;font-size:32px;line-height:.95;letter-spacing:1.2px;margin:0}
+.brand h1 span{color:var(--gold)}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px}
+main{padding:22px 0 70px}
+
+.retention-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:30px}
+.rcard{background:linear-gradient(180deg,var(--panel),#14172e);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px;box-shadow:var(--shadow)}
+.rcard.red-border{border-left:3px solid var(--red)}
+.rcard.org-border{border-left:3px solid #e0973f}
+.rcard-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.ricon{width:32px;height:32px;border-radius:8px;background:var(--panel-2);display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;color:var(--red-hi);font-size:15px}
+.rtag{font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.rtitle{font-size:14px;font-weight:700;color:var(--text)}
+.rdesc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+
+h2.sec{font-family:'Bebas Neue';font-weight:400;font-size:22px;letter-spacing:.5px;
+  margin:8px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line);color:var(--text)}
+
+.others-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.others-card{background:linear-gradient(180deg,var(--panel),#14172e);border:1px solid var(--line);
+  border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}
+.others-card h3{font-family:'Bebas Neue';font-size:19px;color:var(--gold);letter-spacing:.03em;margin:0 0 4px;
+  display:flex;align-items:center;gap:8px}
+.others-card>p{font-size:11px;color:var(--muted-2);margin:0 0 10px}
+.msg-template{background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:11px 12px;
+  margin-top:8px;position:relative;display:flex;gap:10px;align-items:flex-start}
+.msg-num{font-size:10px;font-weight:700;color:var(--gold);flex-shrink:0;min-width:16px}
+.msg-template p{font-size:12px;color:var(--text);line-height:1.55;font-style:italic;margin:0;flex:1}
+.copy-btn{flex-shrink:0;background:transparent;border:1px solid var(--line-hi);color:var(--muted);
+  border-radius:6px;padding:4px 9px;font-size:10px;font-family:'Inter',sans-serif;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;cursor:pointer;transition:.15s;white-space:nowrap;
+  text-decoration:none;display:inline-flex;align-items:center}
+.copy-btn:hover{border-color:var(--gold);color:var(--gold)}
+.copy-btn.copied{border-color:#2FBF71;color:#2FBF71}
+
+footer{border-top:1px solid var(--line);padding:22px 0 34px;color:var(--muted-2);font-size:12px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+
+.template-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:24px}.template-nav a{padding:8px 14px;border:1px solid var(--line-hi);border-radius:999px;text-decoration:none;font-size:12px}.template-nav a:hover{border-color:var(--gold)}.actions{display:flex;flex-wrap:wrap;gap:8px}.rdesc ul{padding-left:18px}.rdesc li{margin:8px 0}section{scroll-margin-top:20px;margin-top:30px}.others-grid{grid-template-columns:minmax(0,1fr)}.msg-template p{overflow-wrap:anywhere}.source-note{color:var(--muted);font-size:12px;margin-top:28px}#copy-status{color:var(--gold);font-size:12px;margin-top:12px}#manual-copy-text{display:block;width:100%;min-height:100px;background:var(--panel);color:var(--text);margin-top:8px}@media(max-width:400px){.wrap{padding:0 14px}.retention-grid{grid-template-columns:minmax(0,1fr)}.msg-template{flex-wrap:wrap}.msg-template p{min-width:0}.brand h1{font-size:28px}}
+</style>
+</head>
+<body>
+<div class="rope"></div>
+<header class="top wrap">
+  <div class="brand">
+    <div class="mark">UM</div>
+    <div>
+      <h1>MESSAGE <span>TEMPLATES</span></h1>
+      <small>Assistant 2.0 · Approved retention messages · Orange Flag &amp; Red Flag</small>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+<nav class="template-nav" aria-label="Message categories"><a href="#orange">Orange Flag · 5</a><a href="#red-adults">Red Flag adults · 9</a><a href="#red-parents">Red Flag parents · 5</a></nav>
+<h2 class="sec">Retention Trackers &amp; Sending Rules</h2>
+<div class="retention-grid">
+<div class="rcard org-border"><div class="rtag">Wednesday · Orange Flag</div><h3 class="rtitle">Zero sessions so far this week</h3><div class="rdesc"><ul><li>Head Coach reviews 10:15–10:45am. Send only after sign-off and REFRESH AFTER REVIEW.</li><li>If no Head Coach response by noon, hold the SMS and contact the Operations Manager via Slack for approval.</li><li>Kickstarter members: Head Coach calls only, never SMS. Sponsored members: no SMS or call. Respect all Head Coach removals.</li><li>Repeat Orange Flag members (column P): ask the Head Coach whether a personal call is needed.</li><li>Choose one of the five approved templates. Replace [Name] where present. Send by SMS or WhatsApp.</li><li>Log Reached Out By, Type, Replied? and Coming Back? in the weekly tracker.</li></ul></div><div class="actions"><a class="copy-btn" href="https://docs.google.com/spreadsheets/d/1Js8gSUreHs_B1OKAmGO_MkJzgLQhc8rNwiAcSt0Fo-4/edit?gid=554086618#gid=554086618" target="_blank" rel="noopener">Open tracker</a><a class="copy-btn" href="https://docs.google.com/document/d/1TISibWPolDBBqOUiz6C3wtb2myu-2iUcS8wGSb8gS7o/edit?tab=t.0" target="_blank" rel="noopener">Open SOP</a></div></div>
+<div class="rcard red-border"><div class="rtag">Monday · Red Flag</div><h3 class="rtitle">Zero attendance in the last 7 days</h3><div class="rdesc"><ul><li>Tracker ready before noon. Head Coach reviews removals; click REFRESH AFTER REVIEW.</li><li>Send only after the Head Coach confirms the Messaging Owner (column L) and message approach.</li><li>Repeat Red Flag members (column V): Head Coach confirms the approach before any standard template is used.</li><li>Exclude all Kickstarter and Sponsored memberships. Exclude Thailand Tour only when it is the member’s sole membership.</li><li>Choose one adult template per member, or one parent template per family. Replace all name placeholders and send via Clubworx SMS.</li><li>Log Reached Out By, Type, Replied? and Coming Back? in the tracker.</li></ul></div><div class="actions"><a class="copy-btn" href="https://docs.google.com/spreadsheets/d/13dWTKKcFx6yAHuaiqIyrGwe6Kaxt0HxOlnCxNVY7G9s/edit?gid=1625321934#gid=1625321934" target="_blank" rel="noopener">Open tracker</a><a class="copy-btn" href="https://docs.google.com/document/d/14Tj-sZ8NHFd7-5o0KedCMqkcNOdkGoGBWl-uuxr7F8k/edit?tab=t.0" target="_blank" rel="noopener">Open SOP</a></div></div>
+</div>
+<section id="orange"><h2 class="sec">Orange Flag — Approved Messages</h2><div class="others-grid"><div class="others-card"><h3>Orange Flag templates (1–5)</h3><p>Wednesday reach-outs · Replace [Name] where present. The team sign-off is included in each approved message.</p><div class="msg-template"><div class="msg-num">1.</div><p>Hey [Name], I haven’t seen you in yet this week. Let’s get you back before the weekend — what session can I book you into? The Team at Urban Muaythai</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Orange Flag templates (1–5) template 1">Copy</button></div><div class="msg-template"><div class="msg-num">2.</div><p>Nudge nudge, we haven’t seen you at the gym yet this week — you in tonight? The Team at Urban Muaythai</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Orange Flag templates (1–5) template 2">Copy</button></div><div class="msg-template"><div class="msg-num">3.</div><p>Hey [Name], we haven’t seen you on the mats yet this week, you all good? The Team at Urban Muaythai</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Orange Flag templates (1–5) template 3">Copy</button></div><div class="msg-template"><div class="msg-num">4.</div><p>Hey [Name], no sessions yet this week — everything okay? Even just one session will get the momentum going. The Team at Urban Muaythai</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Orange Flag templates (1–5) template 4">Copy</button></div><div class="msg-template"><div class="msg-num">5.</div><p>Just checking in — if you’ve had a crazy start to the week, no worries. Can you get to class tonight to stay on track? The Team at Urban Muaythai</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Orange Flag templates (1–5) template 5">Copy</button></div></div></div></section>
+<section id="red-adults"><h2 class="sec">Red Flag — Adult Messages</h2><div class="others-grid"><div class="others-card"><h3>Adult templates (1–9)</h3><p>Monday reach-outs · Replace [Name] with the member’s first name.</p><div class="msg-template"><div class="msg-num">1.</div><p>Hey [Name], I didn’t see you in the gym last week — is everything okay?</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Adult templates (1–9) template 1">Copy</button></div><div class="msg-template"><div class="msg-num">2.</div><p>Hey [Name], noticed you missed last week’s sessions. What session will you get to this week?</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Adult templates (1–9) template 2">Copy</button></div><div class="msg-template"><div class="msg-num">3.</div><p>Hi [Name], I’m checking in because you weren’t in the gym last week — we’re here to support you. What’s the first step we can take together to get you moving again?</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Adult templates (1–9) template 3">Copy</button></div><div class="msg-template"><div class="msg-num">4.</div><p>Hey [Name], I know last week didn’t work out for training. That happens. Let’s reset — when’s a good day for you to jump back in this week? I’ll help hold you accountable.</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Adult templates (1–9) template 4">Copy</button></div><div class="msg-template"><div class="msg-num">5.</div><p>Hey [Name], just checking in because we missed you in the gym last week. Hope everything’s okay on your end — when do you think we’ll see you back in?</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Adult templates (1–9) template 5">Copy</button></div><div class="msg-template"><div class="msg-num">6.</div><p>Hey [Name], noticed you haven’t made it into the gym lately. No pressure at all, just wanted to check how you’re going and see how we can help you get back into routine.</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Adult templates (1–9) template 6">Copy</button></div><div class="msg-template"><div class="msg-num">7.</div><p>Hey [Name], you’ve been missed around the gym this past week. Life gets busy sometimes — want me to help you lock in a session to get the momentum going again?</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Adult templates (1–9) template 7">Copy</button></div><div class="msg-template"><div class="msg-num">8.</div><p>Hey [Name], quick check-in from the team because we didn’t see you last week. Are you okay? Let me know what’s been getting in the way and we’ll work through it together.</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Adult templates (1–9) template 8">Copy</button></div><div class="msg-template"><div class="msg-num">9.</div><p>Hey [Name], just reaching out because we noticed you weren’t in last week. Sometimes all it takes is one session to reset the week — what day can we get you back in?</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Adult templates (1–9) template 9">Copy</button></div></div></div></section>
+<section id="red-parents"><h2 class="sec">Red Flag — Parent Messages</h2><div class="others-grid"><div class="others-card"><h3>Parent templates (1–5)</h3><p>One template per family · Replace [Parent’s name] and [Child’s name].</p><div class="msg-template"><div class="msg-num">1.</div><p>Hey [Parent’s name]! We’ve been missing [Child’s name] on the mats — the coaches have definitely noticed the gap! What does your week look like this week?</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Parent templates (1–5) template 1">Copy</button></div><div class="msg-template"><div class="msg-num">2.</div><p>[Parent’s name], just a friendly shout from the Urban Muay Thai fam! [Child’s name] hasn’t been in for a bit and we want to make sure they’re all good. No dramas if life’s been hectic — when can we get them back on the mats?</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Parent templates (1–5) template 2">Copy</button></div><div class="msg-template"><div class="msg-num">3.</div><p>Hey [Parent’s name]! [Child’s name]’s coaches have been asking where their little fighter’s got to! We’d hate for them to lose their momentum — reckon we can lock in a session for them this week?</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Parent templates (1–5) template 3">Copy</button></div><div class="msg-template"><div class="msg-num">4.</div><p>Hi [Parent’s name], just checking in from Urban Muay Thai! We haven’t seen [Child’s name] on the mats lately and we genuinely miss having them around. When will we see them next?</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Parent templates (1–5) template 4">Copy</button></div><div class="msg-template"><div class="msg-num">5.</div><p>Hey [Parent’s name]! The gym hasn’t been the same without [Child’s name] — their coaches are keen to see them back in action! Life gets busy, we totally get it. Can we help lock in a time to get them back training this week?</p><button type="button" class="copy-btn" onclick="copyMsg(this)" aria-label="Copy Parent templates (1–5) template 5">Copy</button></div></div></div></section>
+<p class="source-note">Message wording checked against the linked SOPs on 3 October 2026. Recheck the SOPs when approved wording changes.</p>
+<div id="copy-status" role="status" aria-live="polite"></div>
+<div id="manual-copy" hidden><label for="manual-copy-text">Select and copy this message:</label><textarea id="manual-copy-text" readonly></textarea></div>
+</main>
+<footer class="wrap"><p><b>Urban Muaythai — Message Templates.</b> One Team, One Fight. · Use the correct flag template, replace all names and follow Head Coach approval before sending.</p></footer>
+<script>async function copyMsg(btn){
+const text=btn.previousElementSibling.textContent;
+const status=document.getElementById('copy-status');
+let copied=false;
+try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(text);copied=true;}}catch(e){}
+if(!copied){const field=document.createElement('textarea');field.value=text;field.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(field);field.focus();field.select();try{copied=document.execCommand('copy');}catch(e){}field.remove();btn.focus();}
+if(copied){document.getElementById('manual-copy').hidden=true;btn.textContent='Copied';btn.classList.add('copied');status.textContent='Message copied. Replace all name placeholders before sending.';setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},1500);}
+else{const panel=document.getElementById('manual-copy');const field=document.getElementById('manual-copy-text');panel.hidden=false;field.value=text;field.focus();field.select();status.textContent='Automatic copy is unavailable. Copy the selected message below.';}
+}</script>
+</body>
+</html>
